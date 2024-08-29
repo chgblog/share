@@ -19,12 +19,18 @@ let res
     document.getElementById("searchbtn").disabled=false;
 	document.getElementById("searchbtn").innerHTML=' Shorten it';
     if(res.key!=="")
-    document.getElementById("result").innerHTML=window.location.href+res.key;
+    document.getElementById("result").innerHTML=removeTrailingSlash(window.location.href)+res.key;
     $('#exampleModal').modal('show')
   }).catch(function(err){alert("Unknow error. Please retry!");
   console.log(err);
   document.getElementById("searchbtn").disabled=false;
 	document.getElementById("searchbtn").innerHTML=' Shorten it';})
+  }
+  function removeTrailingSlash(str) {
+    if (str.endsWith('/')) {
+      return str.slice(0, -1);
+    }
+    return str;
   }
   function copyurl (id, attr) {
     let target = null;
@@ -66,6 +72,6 @@ let res
   })
   //console.log("https://github.com/xyTom/Url-Shorten-Worker/")
   let notice="Notice: This service is for demonstration purposes only and the generated short links will automatically expire after 24 hours."
-  if(window.location.host=="lnks.eu.org"){
+  if(window.location.host=="l.aigemini.asia"){
     document.getElementById("notice").innerHTML=notice
   }
